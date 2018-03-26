@@ -1,33 +1,35 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Игорь
- * Date: 24.03.2018
- * Time: 22:46
- */
 
-class Automobile extends MotorVehicle #Супер класс класса "Автомобиль»": средство передвижения с мотором
+// Супер класс класса "Автомобиль»": средство передвижения с мотором
+
+class Automobile extends MotorVehicle
 {
     public $Color;
     public $WheelSize;
 }
 
-class TV extends TelevisionsAudioVideo #Супер класс класса "Телевизор": Телевизоры, аудио, видео
+// Супер класс класса "Телевизор": Телевизоры, аудио, видео
+
+class TV extends TelevisionsAudioVideo
 {
     public $Сategory;
 }
 
-class BallPen extends Stationery #Супер класс класса "Шариковая ручка»": канцелярские товары
+// Супер класс класса "Шариковая ручка»": канцелярские товары
+
+class BallPen extends Stationery
 {
     public $Сategory;
 }
 
-class Duck extends Bird #Супер класс класса "Утка»": птица
+// Супер класс класса "Утка»": птица
+class Duck extends Bird
 {
     public $Сategory;
 }
 
-class Stock extends Product #Супер класс класса "Товар»": склад
+// Супер класс класса "Товар»": склад
+class Stock extends Product
 {
     public $Сategory;
 }
