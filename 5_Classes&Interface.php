@@ -1,5 +1,16 @@
 <?php
 
+interface GetSetPrice
+{
+    public function setPrice($price);
+    public function getPrice();
+}
+
+interface GetType
+{
+    public function getType();
+}
+
 interface GetAmobileProperty
 {
     public function getName();
@@ -15,27 +26,20 @@ interface ChangeAmobileProperty
     public function changeWheelSize($wheelSize);
 }
 
-//Класс "Средство передвижения с мотором"
-class MotorVehicle
+//Суперкласс "Объекты домашнего задания"
+class HomeworkObject
 {
-    public $numberOfWheels;
-    public $type;
+    public $name;
 
-    public function getType()
+    public function getName()
     {
-        return $this->type;
-    }
-
-    public function getNumberOfWheels()
-    {
-        return $this->numberOfWheels;
+        return $this->name;
     }
 }
 
-//Наследуем класс "Автомобиль" от класса "Средство передвижения с мотором" и имплементируем интерфейс
-class Automobile extends MotorVehicle implements \GetAmobileProperty, \ChangeAmobileProperty
+//Класс "Автомобиль"
+class Automobile extends HomeworkObject implements \GetAmobileProperty, \ChangeAmobileProperty
 {
-    public $name;
     public $category;
     public $color;
     public $wheelSize;
@@ -46,11 +50,6 @@ class Automobile extends MotorVehicle implements \GetAmobileProperty, \ChangeAmo
         $this->category = $category;
         $this->color = $color;
         $this->wheelSize = $wheelSize;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function getWheelSize()
@@ -84,10 +83,9 @@ $mustangShelby = new Automobile('Mustang Shelby', 'Muscle car', 'black', '18');
 $chevroletCorvette = new Automobile('Chevrolet Corvette', 'Super car', 'Red', '19');
 
 
-//Определяем класс "Телевизор"
-class Tv
+//Класс "Телевизор"
+class Tv extends HomeworkObject implements GetSetPrice
 {
-    public $name;
     public $price;
     public $diagonal;
     public $technology;
@@ -107,11 +105,6 @@ class Tv
     public function setPrice($price)
     {
         $this->price = $price;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function getPrice()
@@ -146,18 +139,17 @@ $lg43UJ655V = new Tv('LG 43UJ655V', 38999, '43" (109.2 см)', 'LED', 'Нет', 
 
 $lg55UJ740V = new Tv('LG 55UJ740V', 69999, '55" (139.7 см)', 'Edge LED', 'Нет', '3840x2160 Пикс');
 
-//Определяем класс "Шариковая ручка"
-class BallPen
+//Класс "Шариковая ручка"
+class BallPen extends HomeworkObject implements GetSetPrice
 {
-    public $brand;
     public $price;
     public $collection;
     public $reference;
     public $production;
 
-    public function __construct($brand, $price, $collection, $reference, $production)
+    public function __construct($name, $price, $collection, $reference, $production)
     {
-        $this->brand = $brand;
+        $this->name = $name;
         $this->price = $price;
         $this->collection = $collection;
         $this->reference = $reference;
@@ -172,11 +164,6 @@ class BallPen
     public function setPrice($price)
     {
         $this->price = $price;
-    }
-
-    public function getBrand()
-    {
-        return $this->brand;
     }
 
     public function getCollection()
@@ -202,15 +189,15 @@ $F306Parker = new BallPen('PARKER', 1999, 'Parker IM Metal', '1931665', 'Вел�
 
 $F306Parker = new BallPen('PARKER', 9999, 'Parker Limited Edition', 'S0959750','Великобритания');
 
-//Определяем класс "Утка"
+//Класс "Утка"
 
-class Duck
+class Duck extends HomeworkObject implements GetType
 {
     public $type;
     public $class;
     public $residence;
 
-    public function __construct($type, $class ,$residence)
+    public function __construct($name, $type, $class ,$residence)
     {
         $this->type = $type;
         $this->class = $class;
@@ -235,16 +222,15 @@ class Duck
 }
 
 // Создаём объекты класса "Утка"
-$cairinaMoschata = new Duck('Хордовые', 'Птицы', 'Мексика');
+$cairinaMoschata = new Duck('Дуся','Хордовые', 'Птицы', 'Мексика');
 
-$asarcornisScutulata = new Duck('Хордовые', 'Птицы', 'Индия');
+$asarcornisScutulata = new Duck('Буся', 'Хордовые', 'Птицы', 'Индия');
 
-// Определяем класс "Продукт"
-class Product
+// Класс "Продукт"
+class Product extends HomeworkObject implements GetSetPrice
 {
     public $id;
     public $category;
-    public $name;
     public $price;
 
     public function __construct($id, $category, $name, $price)
@@ -265,11 +251,6 @@ class Product
         $this->price = $price;
     }
 
-    public function getName()
-    {
-        return $this->name;
-    }
-
     public function getCategory()
     {
         return $this->category;
@@ -283,5 +264,4 @@ class Product
 
 // Создаём объекты класса "Продукт"
 $beef = new Product('32145', 'Мясо', 'Говядина', 399);
-
 $beer = new Product('54844', 'Алкоголь', 'Пиво', 99);
